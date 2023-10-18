@@ -91,7 +91,7 @@ const Navbar = () => {
                   <Link href={link.href} key={link.name}>
                     <DropdownMenuItem className="from-[#4c73ff] to-[#389bff] capitalize text-slate-950 hover:bg-gradient-to-r dark:text-white">
                       <Image
-                        src={`/assets/icons/${link.name}-${mode}.svg`}
+                        src={`/assets/icons/${link.name.toLowerCase()}-${mode}.svg`}
                         width={30}
                         height={30}
                         alt={link.name}
