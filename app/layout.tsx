@@ -1,4 +1,5 @@
-import { ThemeProvider } from "@/components/client";
+import React from "react";
+import { ThemeProvider } from "@/context/ThemeProvider";
 
 import "./globals.css";
 import type { Metadata } from "next";
@@ -22,17 +23,12 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}): JSX.Element {
+}) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="min-h-screen bg-white dark:bg-black-100 font-poppins">
+        <ThemeProvider>
+          <div className="min-h-screen bg-white font-poppins text-black dark:bg-black-100 dark:text-white">
             {children}
           </div>
         </ThemeProvider>

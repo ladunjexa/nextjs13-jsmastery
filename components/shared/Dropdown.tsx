@@ -1,3 +1,5 @@
+import React from "react";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -10,7 +12,7 @@ type Props = {
   dropdownComponent: React.ReactNode;
 };
 
-const ToggleMenu = ({ buttonComponent, dropdownComponent }: Props) => {
+const Dropdown = ({ buttonComponent, dropdownComponent }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -24,7 +26,7 @@ const ToggleMenu = ({ buttonComponent, dropdownComponent }: Props) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="border-none bg-white/80 dark:bg-black-400"
+        className="border-none bg-white dark:bg-black-400"
       >
         {dropdownComponent}
       </DropdownMenuContent>
@@ -32,4 +34,4 @@ const ToggleMenu = ({ buttonComponent, dropdownComponent }: Props) => {
   );
 };
 
-export default ToggleMenu;
+export default Dropdown;

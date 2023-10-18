@@ -1,7 +1,9 @@
-import { Footer } from "@/components/server";
-import { Navbar } from "@/components/client";
+import React from "react";
 
-const layout = ({ children }: { children: React.ReactNode }): JSX.Element => {
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+
+const layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Navbar />

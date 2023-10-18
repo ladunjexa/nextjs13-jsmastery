@@ -1,9 +1,16 @@
-import type { DocumentSectionProps, NavLink } from "@/types";
+import type { DocumentSectionProps, NavLink, ThemeOption } from "@/types";
 
 /**
  * An array of resource types.
  * @type {NavLink[]}
  */
+
+export const themes: ThemeOption[] = [
+  { value: "light", label: "Light" },
+  { value: "dark", label: "Dark" },
+  { value: "system", label: "System" },
+];
+
 export const resourceTypes: NavLink[] = [
   { name: "Resources", href: "/resources" },
   { name: "Videos", href: "/videos" },
@@ -23,7 +30,7 @@ export const footerLinks: NavLink[] = [
  * @type {NavLink[]}
  */
 export const navbarLinks: NavLink[] = [
-  { name: "Studocs App", href: "https://studocs-app-showcase.vercel.app/" },
+  { name: "Newsletter", href: "/newsletter", target: "_self" },
   { name: "🦄 Let's Connect", href: "https://ladunjexa.vercel.app/" },
   { name: "Videos", href: "/videos", target: "_self" },
   { name: "Resources", href: "/resources", target: "_self" },

@@ -5,6 +5,7 @@ import { ImageProps } from "next/image";
  * A utility type to prettify an object of type T.
  * @template T - The type to prettify.
  */
+// eslint-disable-next-line no-unused-vars
 type Prettify<T> = {
   [K in keyof T]: T[K];
 } & {};
@@ -28,10 +29,11 @@ interface CommonParams {
 
 export type DownloadButtonProps = Required<CommonProps>;
 
-export type ResourceCardProps = Required<CommonProps> & {
+export type ContentCardProps = Required<CommonProps> & {
   title: string;
   image: string;
   downloadNumber: number;
+  isVideo?: boolean;
 };
 
 export type HeaderProps = Omit<CommonParams, "page">;
@@ -71,7 +73,7 @@ export type DocumentSectionProps = {
   image?: string;
 };
 
-export type LegalDocumentProps = {
+export type DocumentProps = {
   title: string;
   sections: DocumentSectionProps[];
 };
@@ -80,4 +82,9 @@ export type NavLink = {
   name: string;
   href: string;
   target?: string;
+};
+
+export type ThemeOption = {
+  value: string;
+  label: string;
 };

@@ -48,13 +48,22 @@ module.exports = {
           500: "#A4B8D5",
           800: "#D0DFFF",
         },
+        light: {
+          DEFAULT: "#FAFAFB",
+          100: "#F1F4F5",
+          200: "#d7d7d7",
+          300: "#F3F3F4",
+          400: "#E2E5F1",
+          500: "#E4E4E4",
+        },
         purple: "#8C7CFF",
         pink: "#ED5FBD",
         violet: "#F16565",
         orange: "#FF964B",
       },
       backgroundImage: {
-        banner: "url('/jsm_resources_banner.svg')",
+        banner: "url('/assets/images/jsm_resources_banner.svg')",
+        lightbanner: "url('/assets/images/jsm_resources_banner-light.svg')",
       },
       keyframes: {
         "accordion-down": {

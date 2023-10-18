@@ -1,6 +1,6 @@
 import qs from "query-string";
 
-import type { BuildQueryParams, UrlQueryParams } from "@/lib/types";
+import type { BuildQueryParams, UrlQueryParams } from "@/types";
 
 /**
  * Build a query for Sanity to fetch resources from the database based on filtering and pagination.
