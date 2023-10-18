@@ -1,4 +1,4 @@
-import { Document } from "@/components/server";
+import Document from "@/components/shared/Document";
 
 import { privacyPolicySections } from "@/constants";
 
