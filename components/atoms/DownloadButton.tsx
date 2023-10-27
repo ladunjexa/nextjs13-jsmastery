@@ -2,16 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 
-import { incrementDownloadsById } from "@/sanity/actions";
+import { newInteractById } from "@/sanity/actions";
 
 import type { DownloadButtonProps } from "@/types";
 
-const DownloadButton = ({ downloadLink, id }: DownloadButtonProps) => {
+const DownloadButton = ({ link, id }: DownloadButtonProps) => {
   const handleClick = async (): Promise<void> => {
-    await incrementDownloadsById({ id });
+    await newInteractById({ id });
 
     const newWindow: Window | null = window.open(
-      downloadLink,
+      link,
       "_blank",
       "noopener,noreferrer"
     );

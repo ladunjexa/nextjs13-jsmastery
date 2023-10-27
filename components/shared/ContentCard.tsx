@@ -10,10 +10,10 @@ const ContentCard = ({
   title,
   image,
   downloadNumber,
-  downloadLink,
+  link,
   isVideo,
 }: ContentCardProps) => {
-  const href = isVideo ? downloadLink : `/resources/${id}`;
+  const href = isVideo ? link : `/resources/${id}`;
 
   return (
     <Card
@@ -62,20 +62,28 @@ const ContentCard = ({
         </CardHeader>
       </Link>
       <CardContent className="flex-between mt-4 p-0">
-        <div className="flex-center body-medium gap-1.5 text-slate-950 dark:text-white">
-          <Image
-            src="/assets/icons/downloads.svg"
-            width={20}
-            height={20}
-            alt="download"
-          />
+        <div
+          className={`flex-center body-medium gap-1.5 ${
+            isVideo
+              ? "capitalize text-slate-400 dark:text-white-500"
+              : "text-slate-950 dark:text-white"
+          }`}
+        >
+          {!isVideo && (
+            <Image
+              src="/assets/icons/downloads.svg"
+              width={20}
+              height={20}
+              alt="download"
+            />
+          )}
           {downloadNumber}
         </div>
         <Link
           href={href}
           className="flex-center text-gradient_purple-blue body-semibold gap-1.5"
         >
-          Download Now
+          {isVideo ? "Watch" : "Download"} Now
           <Image
             src="/assets/icons/arrow-blue.svg"
             width={13}

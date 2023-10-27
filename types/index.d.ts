@@ -18,13 +18,17 @@ export type ResourcePlaylist = Awaited<
 
 interface CommonProps {
   id?: string;
-  downloadLink?: string;
+  link?: string;
 }
 
 interface CommonParams {
   query: string;
   category: string;
   page: number;
+}
+
+interface DocTypeParams {
+  type: "video" | "resource";
 }
 
 export type DownloadButtonProps = Required<CommonProps>;
@@ -53,7 +57,7 @@ export type ThemeImageProps = Omit<
   srcDark: string;
 };
 
-export type GetResourcesParams = CommonParams;
+export type GetResourcesParams = CommonParams & DocTypeParams;
 
 export type BuildQueryParams = CommonParams & {
   type: string;

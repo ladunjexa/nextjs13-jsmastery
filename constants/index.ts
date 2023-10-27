@@ -44,7 +44,14 @@ export const filterOptions: string[] = [
   "all",
   "math",
   "computer science",
-  "Software Engineering",
+  "software engineering",
+];
+
+export const videoFilterOptions: string[] = [
+  "frontend",
+  "backend",
+  "fullstack",
+  "hybrid",
 ];
 
 /**

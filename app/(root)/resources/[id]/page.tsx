@@ -38,10 +38,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
             </div>
           )}
           <div>
-            <DownloadButton
-              downloadLink={resource.downloadLink}
-              id={resource._id}
-            />
+            <DownloadButton link={resource.link} id={resource._id} />
 
             <div className="relative ml-28 mt-6 hidden h-[218px] w-[425px] lg:flex">
               {resource.sequel && (

@@ -18,9 +18,12 @@ const Page = async ({ searchParams }: Props) => {
     query: searchParams?.query || "",
     category: searchParams?.category || "",
     page: 1,
+    type: "video",
   });
 
-  const resourcesPlaylist: ResourcePlaylist[] = await getResourcesPlaylist();
+  const resourcesPlaylist: ResourcePlaylist[] = await getResourcesPlaylist({
+    type: "video",
+  });
 
   return (
     <main className="flex-center paddings mx-auto w-full max-w-screen-2xl flex-col">
@@ -49,8 +52,8 @@ const Page = async ({ searchParams }: Props) => {
                   title={resource.title}
                   id={resource._id}
                   image={resource.image}
-                  downloadNumber={resource.views}
-                  downloadLink={resource.downloadLink}
+                  downloadNumber={resource.category}
+                  link={resource.link}
                   isVideo
                 />
               ))
@@ -79,8 +82,8 @@ const Page = async ({ searchParams }: Props) => {
                       title={resource.title}
                       id={resource._id}
                       image={resource.image}
-                      downloadNumber={resource.views}
-                      downloadLink={resource.downloadLink}
+                      downloadNumber={resource.category}
+                      link={resource.link}
                       isVideo
                     />
                   ))}

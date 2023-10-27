@@ -2,7 +2,7 @@ import { groq } from "next-sanity";
 import { readClient, writeClient } from "./lib/client";
 import { buildQuery } from "./utils";
 
-import type { GetResourcesParams } from "@/types";
+import type { DocTypeParams, GetResourcesParams } from "@/types";
 
 /**
  * Fetch a list of resources based on search criteria.
@@ -11,6 +11,7 @@ import type { GetResourcesParams } from "@/types";
  * @param {string} params.query - The search query to filter resources by title or content.
  * @param {string | undefined} params.category - The category to filter resources by.
  * @param {number} params.page - The page number for paginated results.
+ * @param {string} params.type - The type of resource to fetch.
  * @returns {Promise<Object[] | undefined>} A promise that resolves to an array of resource objects if found, or undefined if an error occurred.
  *
  * @throws {Error} Throws an error if there was an issue fetching the resources.
@@ -18,19 +19,19 @@ import type { GetResourcesParams } from "@/types";
 export const getResources = async (
   params: GetResourcesParams
 ): Promise<Object[] | undefined | any> => {
-  const { query, category, page }: GetResourcesParams = params;
+  const { query, category, page, type }: GetResourcesParams = params;
 
   try {
     const resources = await readClient.fetch(
       groq`${buildQuery({
-        type: "resource",
+        type,
         query,
         category,
-        page: page,
+        page,
       })}{
         _id,
         title,
-        downloadLink,
+        link,
         "image": poster.asset->url,
         views,
         slug,
@@ -58,18 +59,22 @@ export const getResources = async (
  *
  * @throws {Error} Throws an error if there was an issue fetching the playlist.
  */
-export const getResourcesPlaylist = async (): Promise<
-  Object[] | undefined | any
-> => {
+export const getResourcesPlaylist = async (
+  params: DocTypeParams
+): Promise<Object[] | undefined | any> => {
+  const { type }: DocTypeParams = params;
+
   try {
     const resources = await readClient.fetch(
-      groq`*[_type == "resourcePlaylist"]{
+      groq`*[_type == "${
+        type === "video" ? "videoPlaylist" : "resourcePlaylist"
+      }"]{
         _id,
         title,
         resources[0...6]->{
           title,
           _id,
-          downloadLink,
+          link,
           "image": poster.asset->url,
           views,
           category
@@ -101,7 +106,7 @@ export const getResourceById = async ({
       groq`*[_type == "resource" && _id == "${id}"]{
         _id,
         title,
-        downloadLink,
+        link,
         "image": poster.asset->url,
         views,
         slug,
@@ -129,7 +134,7 @@ export const getResourceById = async ({
  *
  * @throws {Error} Throws an error if there was an issue incrementing the download count.
  */
-export const incrementDownloadsById = async ({
+export const newInteractById = async ({
   id,
 }: {
   id: string;
@@ -145,9 +150,9 @@ export const incrementDownloadsById = async ({
       throw new Error(`Resource with ID ${id} not found.`);
     }
 
-    const views = resource[0].views + 1;
+    const updatedValue = resource[0].views + 1;
 
-    await writeClient.patch(id).set({ views }).commit();
+    await writeClient.patch(id).inc({ views: updatedValue });
   } catch (error) {
     console.error(error);
   }

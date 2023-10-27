@@ -34,7 +34,6 @@ const SearchForm = () => {
       }
 
       router.push(newUrl, { scroll: false });
-      console.log("newUrl", newUrl);
     }, 300);
 
     return () => clearTimeout(delayDebounceFn);

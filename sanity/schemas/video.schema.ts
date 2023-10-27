@@ -1,17 +1,10 @@
-import { filterOptions } from "@/constants";
+import { videoFilterOptions } from "@/constants";
 
 const schema = {
-  name: "resource",
-  title: "Resource",
+  name: "video",
+  title: "Videos",
   type: "document",
   fields: [
-    {
-      name: "association",
-      title: "Association",
-      type: "string",
-      validation: (Rule: any) => Rule.required(),
-      require,
-    },
     {
       name: "title",
       title: "Title",
@@ -26,18 +19,6 @@ const schema = {
       options: {
         source: "title",
       },
-    },
-    {
-      name: "bullets",
-      title: "Bullets",
-      type: "array",
-      of: [{ type: "string" }],
-    },
-    {
-      name: "sequel",
-      title: "Sequel",
-      type: "reference",
-      to: [{ type: "resource" }],
     },
     {
       name: "link",
@@ -66,7 +47,7 @@ const schema = {
       type: "string",
       validation: (Rule: any) => Rule.required(),
       options: {
-        list: filterOptions,
+        list: videoFilterOptions,
       },
     },
   ],
