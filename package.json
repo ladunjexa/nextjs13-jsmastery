@@ -26,7 +26,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-responsive-carousel": "^3.2.23",
-    "sanity": "^3.29.1",
+    "sanity": "^3.31.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7"
   },
